@@ -16,15 +16,15 @@ async def run():
         page = await browser.new_page()
 
         try:
-            # Step 1: Open e-commerce site
+            # Open e-commerce site
             logging.info("Opening e-commerce site...")
             await page.goto("https://automationexercise.com")
 
-            # Step 2: Navigate to Signup/Login
+            # Navigate to Signup/Login
             logging.info("Navigating to Signup/Login page...")
             await page.click("a[href='/login']")
 
-            # Step 3: Fill signup form
+            # Fill signup form with uniqaue username and email
             random_number = random.randint(1000, 9999)
             username = f"testuser_{random_number}"
             email = f"{username}@example.com"
@@ -33,7 +33,7 @@ async def run():
             await page.fill("input[data-qa='signup-email']", email)
             await page.click("button[data-qa='signup-button']")
 
-            # Step 4: Fill account details
+            # Fills in account details
             logging.info("Filling in account details...")
             await page.check("input[id='id_gender1']")
             await page.fill("input[id='password']", "TestPassword123")
@@ -51,7 +51,7 @@ async def run():
 
             logging.info("Account successfully created!")
 
-            # Step 5: Search for an item
+            #  Searches for an item
             try:
                 logging.info("Searching for an item...")
                 await page.goto("https://automationexercise.com/products")
@@ -67,8 +67,8 @@ async def run():
                 await browser.close()
                 return
 
-            # Step 6: Close browser
-            await asyncio.sleep(5)  # pause to see results
+            # Closes browser after a short delay
+            await asyncio.sleep(5)  # delays to see results
             await browser.close()
 
         except Exception as e:
